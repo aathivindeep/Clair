@@ -1,0 +1,62 @@
+<html ng-app="AngularChartExample">
+<head>
+</head>
+<body>
+    <div ng-view></div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.3/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="chart.js"></script>
+    <script>
+        function MainCtrl($scope, $http){
+            var data = 
+         {"xData": ["01-Nov-2014","15-Nov-2014","01-Dec-2014","15-Dec-2014","01-Jan-2015","15-Jan-2015","01-Feb-2015","15-Feb-2015","01-Mar-2015",
+                    "15-Mar-2015","01-Apr-2015","15-Apr-2015","01-May-2015","15-May-2015","01-Jun-2015","15-Jun-2015","01-Jul-2015","15-Jul-2015",
+                    "01-Aug-2015","15-Aug-2015","01-Sep-2015","15-Sep-2015","01-Oct-2015","15-Oct-2015"],
+         "yData":[
+            {
+             "name": "pH",
+             "data": [8.0,8.1,8.0,7.9,8.1,8.0,8.0,8.0,8.0,8.0,7.9,8.0,8.0,7.6,7.7,7.7,7.7,7.9,7.7,7.7,7.5,7.5,7.6,8.0]
+         }, {
+             "name": "Total Hardness",
+             "data": [120,114,112,118,126,120,136,136,148,152,152,168,162,144,190,85,150,180,128,120,102,84,84,120]
+         }, {
+             "name": "Calcium Hardness",
+             "data": [168,144,126,136,160,144,200,192,199,192,183,213,204,177,214,102,162,240,165,132,117,108,90,123]
+         }, {
+             "name": "P Alkalinity",
+             "data": [10,10,8,8,8,8,10,15,16,12,10,8,8,5,8,15,8,8,8,8,8,8,10,4]
+         }, {
+             "name": "M Alkalinity",
+             "data": [190,188,150,165,184,180,180,250,200,250,260,260,260,200,210,140,190,240,200,190,150,150,160,146]
+         }, {
+             "name": "Chloride",
+             "data": [190,100,78,84,110,110,132,155,100,112,106,116,116,160,160,88,144,162,120,85,82,66,76,168]
+         }, {
+             "name": "Conductivity",
+             "data": [900,800,600,700,900,700,1100,1100,1100,1100,1000,1200,1200,1000,1100,800,1200,1400,900,800,600,600,600,700]
+         }, {
+             "name": "Turbidity",
+             "data": [9,12,13,13,15,16,19,13,15,12,16,19,16,14,18,27,24,16,21,14,11,12,16,15]
+         }, {
+             "name": "Total Suspended Solids",
+             "data": [4,6,5,4,4,3,4,4,6,3,9,12,10,8,9,20,17,11,16,11,6,8,9,5]
+         }, {
+             "name": "Total Disolved Solids",
+             "data": [585,520,390,455,585,455,715,715,715,715,650,780,780,650,715,520,780,910,585,520,390,390,390,455]
+         }]}
+         
+         $scope.lineChartYData=data.yData
+         $scope.lineChartXData=data.xData
+        }
+    </script>
+    <script>
+    angular.module('AngularChartExample',['AngularChart'], function( $routeProvider, $locationProvider ){
+        $routeProvider.when('/',{
+            template: '<chart title="Circulated Water" xData="lineChartXData" yData="lineChartYData" xName="Month" yName="Value" subtitle=""></chart>',
+            controller: MainCtrl
+            })
+    })
+    </script>
+</body>
+</html>
